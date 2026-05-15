@@ -1,20 +1,15 @@
 // Firebase Configuration
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-analytics.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
-
-
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-    apiKey: "AIzaSyDXFvX60p4H2-84fd0xM7WX_gUCIBQ0NIo",
-    authDomain: "freefirewebsite-59234.firebaseapp.com",
-    databaseURL: "https://freefirewebsite-59234-default-rtdb.asia-southeast1.firebasedatabase.app",
-    projectId: "freefirewebsite-59234",
-    storageBucket: "freefirewebsite-59234.firebasestorage.app",
-    messagingSenderId: "683223451817",
-    appId: "1:683223451817:web:86bbbbeb0213a8d76201b8",
-    measurementId: "G-PFLY3DHEXX"
-  };
+  apiKey: "AIzaSyDXFvX60p4H2-84fd0xM7WX_gUCIBQ0NIo",
+  authDomain: "freefirewebsite-59234.firebaseapp.com",
+  databaseURL: "https://freefirewebsite-59234-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "freefirewebsite-59234",
+  storageBucket: "freefirewebsite-59234.firebasestorage.app",
+  messagingSenderId: "683223451817",
+  appId: "1:683223451817:web:86bbbbeb0213a8d76201b8",
+  measurementId: "G-PFLY3DHEXX"
+};
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
