@@ -1,5 +1,4 @@
-// Firebase Configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+// Firebase config
 const firebaseConfig = {
   apiKey: "AIzaSyDXFvX60p4H2-84fd0xM7WX_gUCIBQ0NIo",
   authDomain: "freefirewebsite-59234.firebaseapp.com",
@@ -7,111 +6,68 @@ const firebaseConfig = {
   projectId: "freefirewebsite-59234",
   storageBucket: "freefirewebsite-59234.firebasestorage.app",
   messagingSenderId: "683223451817",
-  appId: "1:683223451817:web:86bbbbeb0213a8d76201b8",
-  measurementId: "G-PFLY3DHEXX"
+  appId: "1:683223451817:web:86bbbbeb0213a8d76201b8"
 };
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
-
+// Initialize Firebase (v8 style)
 firebase.initializeApp(firebaseConfig);
 
 const database = firebase.database();
 
-// Database Reference
-
-const database = firebase.database();
-
-// Alert Message
-
+// Alert
 function showMessage() {
     alert("Welcome to Free Fire!");
 }
 
 // Contact Form
-
-document.getElementById("contactForm")
-.addEventListener("submit", function(event){
-
+document.getElementById("contactForm").addEventListener("submit", function(event){
     event.preventDefault();
 
-    let name =
-    document.getElementById("name").value;
+    let name = document.getElementById("name").value;
+    let email = document.getElementById("email").value;
+    let message = document.getElementById("message").value;
+    let error = document.getElementById("error");
 
-    let email =
-    document.getElementById("email").value;
-
-    let message =
-    document.getElementById("message").value;
-
-    let error =
-    document.getElementById("error");
-
-    let emailPattern =
-    /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
-
-    // Validation
+    let emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
 
     if(name === "" || email === "" || message === ""){
-
         error.style.color = "red";
-
-        error.innerHTML =
-        "All fields are required!";
+        error.innerHTML = "All fields are required!";
+        return;
     }
 
-    else if(!email.match(emailPattern)){
-
+    if(!email.match(emailPattern)){
         error.style.color = "red";
-
-        error.innerHTML =
-        "Enter valid email!";
+        error.innerHTML = "Enter valid email!";
+        return;
     }
 
-    else{
+    // Save to Firebase
+    database.ref("contacts").push({
+        name: name,
+        email: email,
+        message: message
+    });
 
-        // Store Data in Firebase
+    error.style.color = "green";
+    error.innerHTML = "Form Submitted Successfully!";
 
-        database.ref("contacts").push({
-            name: name,
-            email: email,
-            message: message
-        });
-
-        error.style.color = "lightgreen";
-
-        error.innerHTML =
-        "Form Submitted Successfully!";
-
-        // Clear Form
-
-        document.getElementById("contactForm").reset();
-    }
-
+    document.getElementById("contactForm").reset();
 });
 
 // To-Do List
-
 function addTask(){
-
-    let taskInput =
-    document.getElementById("taskInput");
-
-    let taskList =
-    document.getElementById("taskList");
+    let taskInput = document.getElementById("taskInput");
+    let taskList = document.getElementById("taskList");
 
     if(taskInput.value === ""){
         alert("Enter a task");
         return;
     }
 
-    let li =
-    document.createElement("li");
+    let li = document.createElement("li");
 
-    li.innerHTML =
-    taskInput.value +
-    " <button onclick='removeTask(this)'>Delete</button>";
+    li.innerHTML = taskInput.value + " <button onclick='removeTask(this)'>Delete</button>";
 
     taskList.appendChild(li);
 
@@ -121,5 +77,3 @@ function addTask(){
 function removeTask(button){
     button.parentElement.remove();
 }
-
-
