@@ -93,13 +93,68 @@
         <ul id="taskList"></ul>
 
     </section>
+    <!-- Login Section -->
+<section class="login-section">
 
-    <!-- Firebase (must be FIRST) -->
+    <h2>Login / Signup</h2>
+
+    <input type="text" id="username" placeholder="Enter Username">
+
+    <input type="email" id="useremail" placeholder="Enter Email">
+
+    <input type="password" id="userpassword" placeholder="Enter Password">
+
+    <button onclick="signup()">
+        Signup
+    </button>
+
+    <button onclick="login()">
+        Login
+    </button>
+
+</section>
+
+<!-- Event Registration -->
+<section class="event-section">
+
+    <h2>MARC HUB Free Fire Event</h2>
+
+    <h3>Prize Pool ₹1000 For Winners Team</h3>
+
+    <form id="eventForm">
+
+        <input type="text" id="playerName" placeholder="Player Name" required>
+
+        <input type="text" id="freefireId" placeholder="Free Fire ID" required>
+
+        <input type="email" id="eventEmail" placeholder="Email Address" required>
+
+        <input type="text" id="phoneNumber" placeholder="Phone Number" required>
+
+        <button type="submit">
+            Register Event
+        </button>
+
+    </form>
+
+    <p id="eventMessage"></p>
+
+</section>
+<!-- Firebase -->
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 
-<!-- Your script (ONLY ONCE) -->
-<script src="script.js"></script>
+<!-- EmailJS -->
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 
+<script>
+(function(){
+emailjs.init("rwHZkgqFwOWu7Cs9o");
+})();
+</script>
+
+<!-- Your JS -->
+<script src="script.js"></script>
 </body>
 </html>

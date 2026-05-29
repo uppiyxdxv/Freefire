@@ -77,3 +77,127 @@ function addTask(){
 function removeTask(button){
     button.parentElement.remove();
 }
+// SIGNUP
+function signup(){
+
+    const username = document.getElementById("username").value;
+
+    const email = document.getElementById("loginEmail").value;
+
+    const password = document.getElementById("loginPassword").value;
+
+    if(username === "" || email === "" || password === ""){
+
+        alert("Please fill all login fields");
+
+        return;
+    }
+
+    database.ref("users").push({
+
+        username: username,
+
+        email: email,
+
+        password: password
+
+    });
+
+    alert("Signup Successful");
+}
+
+
+// LOGIN
+function login(){
+
+    const email = document.getElementById("loginEmail").value;
+
+    const password = document.getElementById("loginPassword").value;
+
+    database.ref("users").once("value", function(snapshot){
+
+        let found = false;
+
+        snapshot.forEach(function(childSnapshot){
+
+            const data = childSnapshot.val();
+
+            if(data.email === email && data.password === password){
+
+                found = true;
+            }
+        });
+
+        if(found){
+
+            alert("Login Successful");
+
+        } else {
+
+            alert("Invalid Email or Password");
+        }
+
+    });
+}
+
+
+// EVENT REGISTRATION
+document.getElementById("eventForm").addEventListener("submit", function(e){
+
+    e.preventDefault();
+
+    const playerName = document.getElementById("playerName").value;
+
+    const freefireId = document.getElementById("freefireId").value;
+
+    const email = document.getElementById("eventEmail").value;
+
+    const phone = document.getElementById("phoneNumber").value;
+
+    database.ref("eventRegistrations").push({
+
+        playerName: playerName,
+
+        freefireId: freefireId,
+
+        email: email,
+
+        phone: phone,
+
+        eventName: "MARC HUB Free Fire Event",
+
+        prizePool: "1000"
+
+    });
+
+    document.getElementById("eventSuccess").innerHTML =
+    "Congratulations you're registered MARC HUB Free Fire Event.";
+
+    sendMail(email);
+
+    document.getElementById("eventForm").reset();
+
+});
+
+
+// EMAIL FUNCTION
+function sendMail(userEmail){
+
+    emailjs.send("service_63ztzjj","template_0qqkrax",{
+
+        to_email: userEmail,
+
+        message:
+        "Congratulations you're registered MARC HUB Free Fire Event."
+
+    }).then(function(response){
+
+        console.log("Mail Sent");
+
+    }, function(error){
+
+        console.log("Mail Failed", error);
+
+    });
+
+}

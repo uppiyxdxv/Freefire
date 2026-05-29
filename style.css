@@ -146,3 +146,46 @@ button:hover{
         flex-direction:column;
     }
 }
+.login-section,
+.event-section {
+
+    background: #111;
+
+    color: white;
+
+    padding: 40px;
+
+    text-align: center;
+}
+
+.login-section input,
+.event-section input {
+
+    display: block;
+
+    width: 300px;
+
+    margin: 10px auto;
+
+    padding: 10px;
+
+    border: none;
+
+    border-radius: 5px;
+}
+
+.login-section button,
+.event-section button {
+
+    padding: 10px 20px;
+
+    border: none;
+
+    background: orange;
+
+    color: white;
+
+    cursor: pointer;
+
+    margin-top: 10px;
+}
